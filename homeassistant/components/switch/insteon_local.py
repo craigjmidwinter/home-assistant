@@ -32,8 +32,8 @@ DEPENDENCIES = ['insteon_local']
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=5)
-MIN_TIME_BETWEEN_FORCED_SCANS = timedelta(milliseconds=100)
+MIN_TIME_BETWEEN_SCANS = timedelta(seconds=10)
+MIN_TIME_BETWEEN_FORCED_SCANS = timedelta(milliseconds=250)
 
 DOMAIN = "switch"
 
