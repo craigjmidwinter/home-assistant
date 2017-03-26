@@ -21,7 +21,7 @@ REQUIREMENTS = ['pybbox==0.0.5-alpha', 'selenium', 'selenium-requests']
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=20)
+MIN_TIME_BETWEEN_SCANS = timedelta(seconds=45)
 
 DEFAULT_HOST = '192.168.0.1'
 
@@ -106,11 +106,13 @@ class DLinkScanner(DeviceScanner):
 
         self.driver.close()
 
+        self.last_results = clients
+
         return clients
 
     def is_client_connected(self, client_name):
 
-        clients = self.get_connected_clients()
+        clients = self._update_info()
 
         if clients is not None:
             return client_name in clients
