@@ -21,7 +21,7 @@ REQUIREMENTS = ['pybbox==0.0.5-alpha', 'selenium', 'selenium-requests']
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=45)
+MIN_TIME_BETWEEN_SCANS = timedelta(seconds=60)
 
 DEFAULT_HOST = '192.168.0.1'
 
@@ -66,7 +66,7 @@ class DLinkScanner(DeviceScanner):
         path = "http://" + self.gateway + "/info/Login.html"
 
         self.driver.get(path)
-        delay = 10  # seconds
+        delay = 15  # seconds
 
         try:
             WebDriverWait(self.driver, delay).until(
