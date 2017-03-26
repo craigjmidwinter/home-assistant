@@ -471,6 +471,7 @@ pyasn1==0.2.3
 pyatv==0.2.1
 
 # homeassistant.components.device_tracker.bbox
+# homeassistant.components.device_tracker.dlink
 # homeassistant.components.sensor.bbox
 pybbox==0.0.5-alpha
 
@@ -675,6 +676,12 @@ schiene==0.18
 
 # homeassistant.components.scsgate
 scsgate==0.1.0
+
+# homeassistant.components.device_tracker.dlink
+selenium-requests==1.3
+
+# homeassistant.components.device_tracker.dlink
+selenium==1.8
 
 # homeassistant.components.notify.sendgrid
 sendgrid==3.6.3
