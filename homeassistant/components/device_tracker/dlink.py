@@ -21,7 +21,7 @@ REQUIREMENTS = ['pybbox==0.0.5-alpha', 'selenium', 'selenium-requests']
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=60)
+MIN_TIME_BETWEEN_SCANS = timedelta(seconds=30)
 
 DEFAULT_HOST = '192.168.0.1'
 
@@ -70,7 +70,7 @@ class DLinkScanner(DeviceScanner):
 
         try:
             WebDriverWait(self.driver, delay).until(
-                EC.element_to_be_clickable((By.ID, "admin_Password")))
+                EC.element_to_be_clickable((By.ID, "logIn_btn")))
             _LOGGER.info('Logging in')
             self.driver.find_element_by_id('admin_Password').send_keys(self.password)
             self.driver.find_element_by_id('admin_Password').send_keys(Keys.RETURN)
