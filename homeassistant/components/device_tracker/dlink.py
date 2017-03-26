@@ -10,7 +10,7 @@ from datetime import timedelta
 import voluptuous as vol
 import homeassistant.util.dt as dt_util
 import homeassistant.helpers.config_validation as cv
-
+import signal
 from homeassistant.components.device_tracker import (
     DOMAIN, PLATFORM_SCHEMA, DeviceScanner)
 from homeassistant.const import (
@@ -104,7 +104,8 @@ class DLinkScanner(DeviceScanner):
                 _LOGGER.info('Found ' + str(val.text))
                 clients.extend([str(val.text)])
 
-        self.driver.close()
+        self.driver.service.process.send_signal(signal.SIGTERM)  # kill the specific phantomjs child proc
+        self.driver.quit()  # quit the node proc
 
         self.last_results = clients
 
