@@ -70,7 +70,7 @@ class DLinkScanner(DeviceScanner):
 
         try:
             WebDriverWait(self.driver, delay).until(
-                EC.element_to_be_clickable((By.ID, "logIn_btn")))
+                EC.presence_of_element_located(By.ID, "admin_Password"))
             _LOGGER.info('Logging in')
             self.driver.find_element_by_id('admin_Password').send_keys(self.password)
             self.driver.find_element_by_id('admin_Password').send_keys(Keys.RETURN)
