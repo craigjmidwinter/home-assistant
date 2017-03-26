@@ -14,7 +14,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.components.device_tracker import (
     DOMAIN, PLATFORM_SCHEMA, DeviceScanner)
 from homeassistant.const import (
-    CONF_HOST, CONF_PASSWORD, CONF_USERNAME, CONF_PORT)
+    CONF_HOST, CONF_PASSWORD)
 from homeassistant.util import Throttle
 
 REQUIREMENTS = ['pybbox==0.0.5-alpha', 'selenium', 'selenium-requests']
@@ -34,7 +34,7 @@ def get_scanner(hass, config):
     """Validate the configuration and return a Bbox scanner."""
     info = config[DOMAIN]
 
-    scanner = DLinkScanner(info.get(CONF_HOST), (CONF_PASSWORD))
+    scanner = DLinkScanner(info.get(CONF_HOST), info.get(CONF_PASSWORD))
 
     return scanner if scanner.success_init else None
 
@@ -70,7 +70,7 @@ class DLinkScanner(DeviceScanner):
 
         try:
             WebDriverWait(self.driver, delay).until(
-                EC.presence_of_element_located(By.ID, "admin_Password"))
+                EC.presence_of_element_located((By.ID, "admin_Password")))
             _LOGGER.info('Logging in')
             self.driver.find_element_by_id('admin_Password').send_keys(self.password)
             self.driver.find_element_by_id('admin_Password').send_keys(Keys.RETURN)
