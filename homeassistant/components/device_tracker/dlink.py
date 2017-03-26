@@ -21,7 +21,7 @@ REQUIREMENTS = ['pybbox==0.0.5-alpha', 'selenium', 'selenium-requests']
 
 _LOGGER = logging.getLogger(__name__)
 
-MIN_TIME_BETWEEN_SCANS = timedelta(seconds=5)
+MIN_TIME_BETWEEN_SCANS = timedelta(seconds=20)
 
 DEFAULT_HOST = '192.168.0.1'
 
