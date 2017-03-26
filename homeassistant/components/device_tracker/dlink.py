@@ -92,6 +92,7 @@ class DLinkScanner(DeviceScanner):
                 clients.extend([str(val.text).upper()])
 
         except TimeoutException:
+            _LOGGER.error('Timeout exception')
             self.driver.save_screenshot('error.png')
             clients = []
 
