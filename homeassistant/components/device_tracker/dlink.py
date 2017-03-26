@@ -71,7 +71,7 @@ class DLinkScanner(DeviceScanner):
         try:
             WebDriverWait(self.driver, delay).until(
                 EC.element_to_be_clickable((By.ID, "admin_Password")))
-
+            _LOGGER.info('Logging in')
             self.driver.find_element_by_id('admin_Password').send_keys(self.password)
             self.driver.find_element_by_id('admin_Password').send_keys(Keys.RETURN)
             self.driver.find_element_by_id("logIn_btn").click()
@@ -79,6 +79,7 @@ class DLinkScanner(DeviceScanner):
             WebDriverWait(self.driver, delay).until(
                 EC.element_to_be_clickable((By.ID, "clientInfo_circle")))
 
+            _LOGGER.info('Navigating to client list')
             self.driver.find_element_by_id("clientInfo_circle").click()
 
             WebDriverWait(self.driver, delay).until(
@@ -87,6 +88,7 @@ class DLinkScanner(DeviceScanner):
             elements = self.driver.find_elements_by_class_name('client_Name')
             clients = []
             for val in elements:
+                _LOGGER.info('Found ' + str(val.text))
                 clients.extend([str(val.text).upper()])
 
         except TimeoutException:
@@ -98,7 +100,10 @@ class DLinkScanner(DeviceScanner):
             elements = self.driver.find_elements_by_class_name('client_Name')
             clients = []
             for val in elements:
-                clients.extend([str(val.text).upper()])
+                _LOGGER.info('Found ' + str(val.text))
+                clients.extend([str(val.text)])
+
+        self.driver.close()
 
         return clients
 
@@ -107,7 +112,7 @@ class DLinkScanner(DeviceScanner):
         clients = self.get_connected_clients()
 
         if clients is not None:
-            return client_name.upper() in clients
+            return client_name in clients
         else:
             return False
 
