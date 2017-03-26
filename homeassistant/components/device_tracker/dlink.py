@@ -39,7 +39,7 @@ def get_scanner(hass, config):
     return scanner if scanner.success_init else None
 
 
-class DLinkScanner:
+class DLinkScanner(DeviceScanner):
 
     def __init__(self, gateway, admin_password):
 
