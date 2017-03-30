@@ -76,27 +76,25 @@ class DLinkScanner(DeviceScanner):
             _LOGGER.info('Navigating to client list')
             self.driver.find_element_by_id("clientInfo_circle").click()
 
-            WebDriverWait(self.driver, delay).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "client_Name")))
-
-            elements = self.driver.find_elements_by_class_name('client_Name')
-            clients = []
-            for val in elements:
-                _LOGGER.info('Found ' + str(val.text))
-                clients.extend([str(val.text).upper()])
-
+            # Bad timing, refresh elements
+            attempts = 0
+            success = False
+            while success is False and attempts < 4:
+                try:
+                    WebDriverWait(self.driver, delay).until(
+                        EC.presence_of_element_located((By.CLASS_NAME, "client_Name")))
+                    elements = self.driver.find_elements_by_class_name('client_Name')
+                    clients = []
+                    for val in elements:
+                        _LOGGER.info('Found ' + str(val.text))
+                        clients.extend([str(val.text)])
+                    success = True
+                except StaleElementReferenceException:
+                    attempts += 1
         except TimeoutException:
             _LOGGER.error('Timeout exception')
             self.driver.save_screenshot('error.png')
             clients = []
-
-        except StaleElementReferenceException:
-            # Bad timing, refresh elements
-            elements = self.driver.find_elements_by_class_name('client_Name')
-            clients = []
-            for val in elements:
-                _LOGGER.info('Found ' + str(val.text))
-                clients.extend([str(val.text)])
 
         self.driver.service.process.send_signal(signal.SIGTERM)  # kill the specific phantomjs child proc
         self.driver.quit()  # quit the node proc
