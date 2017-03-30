@@ -1,9 +1,3 @@
-"""
-Support for French FAI Bouygues Bbox routers.
-
-For more details about this platform, please refer to the documentation at
-https://home-assistant.io/components/device_tracker.bbox/
-"""
 from collections import namedtuple
 import logging
 from datetime import timedelta
