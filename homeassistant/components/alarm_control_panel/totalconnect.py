@@ -11,7 +11,7 @@ from homeassistant.const import (
     CONF_NAME)
 import homeassistant.helpers.config_validation as cv
 
-REQUIREMENTS = ['total_connect_client==0.7']
+REQUIREMENTS = ['total-connect-client==0.7']
 
 _LOGGER = logging.getLogger(__name__)
 
