@@ -14,7 +14,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.const import CONF_USERNAME, CONF_PASSWORD
 from homeassistant.helpers.entity import Entity
 
-REQUIREMENTS = ['pyowlet==1.0.0']
+REQUIREMENTS = ['pyowlet==1.0.2']
 
 _LOGGER = logging.getLogger(__name__)
 
