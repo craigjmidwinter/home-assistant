@@ -54,6 +54,7 @@ class OwletMonitor(Entity):
             'crit_batt_alrt': self.owlet.crit_batt_alrt,
             'crit_ox_alrt': self.owlet.crit_ox_alrt,
             'heart_rate': self.owlet.heart_rate,
+            'oxygen_level': self.owlet.oxygen_level,
             'high_hr_alrt': self.owlet.high_hr_alrt,
             'low_batt_alrt': self.owlet.low_batt_alrt,
             'low_batt_prcnt': self.owlet.low_batt_prcnt,
