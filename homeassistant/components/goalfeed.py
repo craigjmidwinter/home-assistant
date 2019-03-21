@@ -12,9 +12,8 @@ import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 
-# Version downgraded due to regression in library
-# For details: https://github.com/nlsdfnbch/Pysher/issues/38
-REQUIREMENTS = ['pysher==1.0.1']
+REQUIREMENTS = ['pysher==1.0.4']
+
 DOMAIN = 'goalfeed'
 
 CONFIG_SCHEMA = vol.Schema({
